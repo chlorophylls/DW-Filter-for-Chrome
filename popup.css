@@ -1,0 +1,69 @@
+@charset "utf-8";
+body {
+  min-width: 24em;
+  max-width: 100%;
+  min-height: 28em;
+  max-height: 36em;
+  font-size: 0.8em;
+}
+
+#filter-list-title {
+  padding: 0.4em;
+  background-color: #78C2AD;
+  color: #ffffff;
+  font-size: 1.25em;
+  text-align: center;
+}
+
+button {
+  border: none;
+  background: none;
+  color: #000;
+  padding: 0.5em;
+}
+
+#list-add-input {
+  font-size: 1em;
+}
+
+#list-add-button {
+  background-color: #78C2AD;
+  color: #ffffff;
+  font-size: 1em;
+}
+
+#filter-list {
+	/**max-height: 16em;
+	overflow-y: auto; KEEP THIS HIDDEN FOR NOW, WILL INPUT LATER. IT WORKS, BUT JUST WANT MORE DESIGN TESTING. **/
+}
+
+.list-delete-button {
+}
+
+.list-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+	text-align: center !important;
+}
+
+.list-actions {
+	text-align: center !important;
+}
+
+.filter-list-row {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  color: #888888;
+}
+
+/** OPTIONS PAGE-SPECIFIC STYLING **/ 
+#options-mass-actions {
+	text-align: center !important;
+}
+#delete-all-button, #import-button, #export-button {
+	background-color: #78C2AD;
+	color: #ffffff;
+	border-radius: 0.5em;
+	padding: 0.75em;
+}

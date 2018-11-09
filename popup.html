@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="popup.js"></script>
+<link rel="stylesheet" type="text/css" href="popup.css">
+</head>
+
+<body>
+<div class="container-fluid">
+  <p>This extension filters DW pages such that the only comments that show up are the ones specifically whitelisted. Think of it as an advanced Ctrl + F.</p>
+  <p>options.html should store and allow the user to edit the whitelist.</p>
+  <p>options.html should include: - importing and exporting json files to store the whitelist - show whole list of currently filtered words</p>
+  <div class="row">
+    <div class="col-6">Filtered results per page:</div>
+    <div class="col-6">
+      <input type="text" id="results-per-page" class="form-control" placeholder="20" value="20" aria-label="Filtered results per page">
+    </div>
+  </div>
+  <p></p>
+  <!-- CURRENTLY FILTERED TO title div -->
+  <div class="row" id="filter-list-title">
+    <div class="col">
+      <center>
+        CURRENTLY FILTERED TO
+      </center>
+    </div>
+  </div>
+  
+  <!-- FILTER LIST OF WORDS -->
+  <div class="row">
+    <div class="col" id="filter-list">
+      <div class="row filter-list-row ">
+        <div class="col-9 list-text">Jill</div>
+        <div class="col-3 list-actions">
+          <button class="list-delete-button" onClick="deleteTerm(this)"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+      <div class="row filter-list-row">
+        <div class="col-9 list-text">Eve</div>
+        <div class="col-3 list-actions">
+          <button class="list-delete-button" onClick="deleteTerm(this)"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+      <div class="row filter-list-row">
+        <div class="col-9 list-text">Eve</div>
+        <div class="col-3 list-actions">
+          <button class="list-delete-button" onClick="deleteTerm(this)"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+      <div class="row filter-list-row">
+        <div class="col-9 list-text">Jack</div>
+        <div class="col-3 list-actions">
+          <button class="list-delete-button" onClick="deleteTerm(this)"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+      <div class="row filter-list-row">
+        <div class="col-9 list-text">John</div>
+        <div class="col-3 list-actions">
+          <button class="list-delete-button" onClick="deleteTerm(this)"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END FILTER LIST OF WORDS -->
+  <p></p>
+  <div class="row">
+    <div class="col">
+      <p>You can add multiple terms, just split them up with commas (,).</p>
+      <div class="input-group mb-3">
+        <input type="text" id="list-add-input" class="form-control" placeholder="Add search term(s) to filter" aria-label="Add search term(s) to filter">
+        <div class="input-group-append">
+          <button id="list-add-button" onclick="addTerms()"><i class="fas fa-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
