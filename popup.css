@@ -1,69 +1,136 @@
 @charset "utf-8";
 body {
-  min-width: 24em;
-  max-width: 100%;
-  min-height: 28em;
-  max-height: 36em;
-  font-size: 0.8em;
+	min-width: 24em;
+	max-width: 100%;
+	min-height: 28em;
+	max-height: 36em;
+	font-size: 0.8em;
 }
-
 #filter-list-title {
-  padding: 0.4em;
-  background-color: #78C2AD;
-  color: #ffffff;
-  font-size: 1.25em;
-  text-align: center;
+	padding: 0.4em;
+	background-color: #78C2AD;
+	color: #ffffff;
+	font-size: 1.25em;
+	text-align: center;
 }
-
 button {
-  border: none;
-  background: none;
-  color: #000;
-  padding: 0.5em;
+	border: none;
+	background: none;
 }
 
-#list-add-input {
-  font-size: 1em;
+.text-input {
+	font-size: 1em;
+	display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-
 #list-add-button {
-  background-color: #78C2AD;
-  color: #ffffff;
-  font-size: 1em;
+	margin-top: 1.25em;
+	border: none;
+	width: 100%;
+	background-color: #78C2AD;
+	color: #ffffff;
+	font-size: 1em;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+	border-radius: .25rem;
 }
-
 #filter-list {
-	/**max-height: 16em;
-	overflow-y: auto; KEEP THIS HIDDEN FOR NOW, WILL INPUT LATER. IT WORKS, BUT JUST WANT MORE DESIGN TESTING. **/
+	max-height: 23.1em;
+	overflow-y: auto;
+	min-height: 2.5em;
+	border-color: #D3D3D3;
+	border-style: solid;
+	border-width: 0px 1px 1px 1px;
+	background-color: rgba(0, 0, 0, 0.03);
 }
-
 .list-delete-button {
+	border: none;
+	background: none;
+	color: #000000;
+	padding: 0.5em;
 }
-
 .list-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	text-align: center !important;
 }
-
 .list-actions {
 	text-align: center !important;
 }
-
 .filter-list-row {
-  background-color: rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-  color: #888888;
+	border-bottom: 1px solid #D3D3D3;
+	color: #888888;
+}
+.filter-list-row input {
+	margin-right: 1em;
+}
+
+/* MODAL-SPECIFIC STYLING*/
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 900; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+}
+/* Modal header */
+.modal-header {
+	padding: 0.4em;
+	background-color: #78C2AD;
+	color: #ffffff;
+}
+/* Modal content/box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 1em;
+	border: 1px solid #888;
+	width: 50%; /* Could be more or less, depending on screen size */
+}
+.modal-body {padding: 0.4em;}
+/* Modal close button */
+.modal-close { 
+	color: #ffffff;
+	float: right;
+	padding-right: 0.2em;
+	font-size: 2.5em;
+	font-weight: bold;
+}
+.modal-close:hover, .modal-close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 /** OPTIONS PAGE-SPECIFIC STYLING **/ 
 #options-mass-actions {
 	text-align: center !important;
 }
-#delete-all-button, #import-button, #export-button {
+
+/** delete-selected-button is not options page specific but the rest are **/
+#delete-all-button, #delete-selected-button, #import-button, #export-button, #export-plain-copy-button {
 	background-color: #78C2AD;
 	color: #ffffff;
-	border-radius: 0.5em;
-	padding: 0.75em;
+    padding: .375rem .75rem;
+	width: 100%;
+    line-height: 1.5;
+	border-radius: .25rem;
+}
+
+#export-plain-textarea {
+	width: 100%;
 }
