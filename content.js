@@ -1,7 +1,7 @@
 // content.js; Runs in the foreground of the HTML page.
 
 // List to edit/test.
-var list = ["fire emblem awakening", "mcu", "dceu", "toriko", "m/m", "ota"];
+var list = ["mcu", "dceu", "ota"];
 
 //document.addEventListener("DOMContentLoaded", evt => {
 // When document is ready, create overlay div.
@@ -83,7 +83,14 @@ function filter() {
 	for (i = 0; i < commentThreads.length; i++) {
 		var toplevel = commentThreads[i].querySelector('.comment'); // gets the toplevel comment itself
 		var commentTitle = toplevel.querySelector('.comment-title > span').innerHTML; // searches for the comment title/header and gets the inner HTML (inside of the span tags that are in headers).
-		checkList(commentTitle);
+		//checkList(commentTitle);
+		
+		if (checkList(commentTitle)){ // comment contains a whitelisted phrase in header
+			// do nothing
+		} else { // it does not contain a whitelisted phrase in header
+			commentThreads[i].style.display = "none"; // so make it invisible
+		}
+		
 	}
 }
 
