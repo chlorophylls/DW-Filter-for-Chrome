@@ -1,5 +1,4 @@
 @charset "utf-8";
-
 body {
 	min-width: 24em;
 	max-width: 100%;
@@ -7,7 +6,6 @@ body {
 	max-height: 36em;
 	font-size: 0.8em;
 }
-
 #filter-list-title {
 	padding: 0.4em;
 	background-color: #78C2AD;
@@ -15,12 +13,10 @@ body {
 	font-size: 1.25em;
 	text-align: center;
 }
-
 button {
 	border: none;
 	background: none;
 }
-
 .text-input {
 	font-size: 1em;
 	display: block;
@@ -34,7 +30,6 @@ button {
 	border-radius: .25rem;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-
 #list-add-button {
 	margin-top: 1.25em;
 	border: none;
@@ -46,7 +41,6 @@ button {
 	line-height: 1.5;
 	border-radius: .25rem;
 }
-
 #filter-list {
 	max-height: 23.1em;
 	overflow-y: auto;
@@ -56,35 +50,33 @@ button {
 	border-width: 0px 1px 1px 1px;
 	background-color: rgba(0, 0, 0, 0.03);
 }
-
 .list-delete-button {
 	border: none;
 	background: none;
 	color: #000000;
 	padding: 0.5em;
 }
-
 .list-text {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	text-align: center !important;
 }
-
 .list-actions {
 	text-align: center !important;
 }
-
+.list-check {
+}
 .filter-list-row {
 	border-bottom: 1px solid #D3D3D3;
 	color: #888888;
 }
-
 .filter-list-row input {
 	margin-right: 1em;
 }
 
-/* MODAL-SPECIFIC STYLING*/
+
+/** MODAL-SPECIFIC STYLING **/
 .modal {
 	display: none;	/* Hidden by default */
 	position: fixed;	/* Stay in place */
@@ -97,14 +89,12 @@ button {
 	background-color: rgb(0, 0, 0);	/* Fallback color */
 	background-color: rgba(0, 0, 0, 0.3); 	/* Black w/ opacity */
 }
-
 /* Modal header */
 .modal-header {
 	padding: 0.4em;
 	background-color: #78C2AD;
 	color: #ffffff;
 }
-
 /* Modal content/box */
 .modal-content {
 	background-color: #fefefe;
@@ -112,14 +102,11 @@ button {
 	/* 15% from the top and centered */
 	padding: 1em;
 	border: 1px solid #888;
-	width: 50%;
-	/* Could be more or less, depending on screen size */
+	width: 50%;/* Could be more or less, depending on screen size */
 }
-
 .modal-body {
 	padding: 0.4em;
 }
-
 /* Modal close button */
 .modal-close {
 	color: #ffffff;
@@ -128,9 +115,7 @@ button {
 	font-size: 2.5em;
 	font-weight: bold;
 }
-
-.modal-close:hover,
-.modal-close:focus {
+.modal-close:hover, .modal-close:focus {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
@@ -141,17 +126,13 @@ button {
 .switch {
 	position: relative;
 	display: inline-block;
-	width: 60px;
-	height: 34px;
+	width: 10em;
+	height: 3.5em;
 }
-
 /* Hide default HTML checkbox */
 .switch input {
-	opacity: 0;
-	width: 0;
-	height: 0;
+	display: none;
 }
-
 /* The slider */
 .slider {
 	position: absolute;
@@ -160,56 +141,57 @@ button {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #ccc;
+	background-color: #ff5252;
 	-webkit-transition: .4s;
 	transition: .4s;
 }
-
 .slider:before {
 	position: absolute;
 	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
+	height: 2.5em;
+	width: 2.5em;
+	left: 0.5em;
+	bottom: 0.5em;
 	background-color: white;
 	-webkit-transition: .4s;
 	transition: .4s;
 }
-
 input:checked + .slider {
-	background-color: #2196F3;
+	background-color: #78C2AD;
 }
-
 input:focus + .slider {
-	box-shadow: 0 0 1px #2196F3;
+	box-shadow: 0 0 1px #78C2AD;
 }
-
 input:checked + .slider:before {
-	-webkit-transform: translateX(26px);
-	-ms-transform: translateX(26px);
-	transform: translateX(26px);
+	-webkit-transform: translateX(6.5em);
+	-ms-transform: translateX(6.5em);
+	transform: translateX(6.5em);
+}
+/** Slider after **/
+.slider:after {
+	content: 'OFF';
+	color: white;
+	display: block;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	font-size: 0.75rem;
+}
+input:checked + .slider:after {
+	content: 'ON';
 }
 
 /** OPTIONS PAGE-SPECIFIC STYLING **/
 #options-mass-actions {
 	text-align: center !important;
 }
-
 /** delete-selected-button is not options page specific but the rest are **/
-#delete-all-button,
-#delete-selected-button,
-#import-button,
-#export-button,
-#export-plain-copy-button {
+#delete-all-button, #delete-selected-button, #import-button, #export-button, #export-plain-copy-button {
 	background-color: #78C2AD;
 	color: #ffffff;
 	padding: .375rem .75rem;
 	width: 100%;
 	line-height: 1.5;
 	border-radius: .25rem;
-}
-
-#export-plain-textarea {
-	width: 100%;
 }
