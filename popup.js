@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", evt => {
 	// TESTING FOR ARRAY/LIST FUNCTIONS
 	updateList(list);
 	
+	var toggle = document.getElementById("extension-toggle");
+	
+	
 	document.getElementById("list-add-button").onclick = addTerms;
 
 	// Binds the deleteSelected function to any button with the id 'delete-selected-button'.
@@ -152,4 +155,9 @@ var textarea = document.getElementById("export-plain-textarea");
   /* Copy the text inside the text field */
   document.execCommand("copy");
 
+}
+
+// Toggles whether the button/extension is off or on.
+function toggleState(){
+	
 }

@@ -1,54 +1,63 @@
 <!DOCTYPE html>
 
 <head>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<script src="popup.js"></script>
-<link rel="stylesheet" type="text/css" href="popup.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="popup.js"></script>
+	<link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 
 <body>
-<div class="container-fluid">
-  <p></p>
-  <div class="row">
+	<div class="container-fluid">
+		<p></p>
+		<!-- <div class="row">
     <div class="col-6"><b>Number of filtered results per page:</b></div>
     <div class="col-6">
       <input type="text" id="results-per-page" class="form-control" placeholder="20" value="20" aria-label="Filtered results per page">
     </div>
-  </div>
-  <p></p>
-  <!-- CURRENTLY FILTERED TO title div -->
-  <div class="row" id="filter-list-title">
-    <div class="col">
-      <center>
-        CURRENTLY FILTERING TO
-      </center>
-    </div>
-  </div>
-  
-  <!-- FILTER LIST OF WORDS -->
-  <div class="row">
-    <div class="col" id="filter-list"> </div>
-  </div>
-  <!-- END FILTER LIST OF WORDS -->
-  <p></p>
-  <div class="row">
-    <div class="col-12">
-      <button id="delete-selected-button"><i class="fas fa-minus-square"></i> &ensp; Delete selected item(s)</button>
-    </div>
-    <!-- input terms section -->
-    <div class="col-8">
-      <p></p>
-      <input type="text" id="list-add-input" class="text-input" placeholder="Add search term(s) to filter" aria-label="Add search term(s) to filter">
-    </div>
-    <div class="col-4">
-      <button id="list-add-button"><i class="fas fa-plus"></i> Add</button>
-    </div>
-    <div class="col-12">
-      <p></p>
-      <p>You can add multiple terms, just split them up with commas (,).</p>
-    </div>
-    <!-- end input terms section --> 
-  </div>
-</div>
+  </div> -->
+		<div class="row">
+			<div class="col">
+				<label class="switch">
+					<input type="checkbox" id="extension-toggle" checked>
+					<span class="slider"></span>
+				</label>
+			</div>
+		</div>
+
+		<p></p>
+		<!-- CURRENTLY FILTERED TO title div -->
+		<div class="row" id="filter-list-title">
+			<div class="col">
+				<center>
+					CURRENTLY FILTERING TO
+				</center>
+			</div>
+		</div>
+
+		<!-- FILTER LIST OF WORDS -->
+		<div class="row">
+			<div class="col" id="filter-list"> </div>
+		</div>
+		<!-- END FILTER LIST OF WORDS -->
+		<p></p>
+		<div class="row">
+			<div class="col-12">
+				<button id="delete-selected-button"><i class="fas fa-minus-square"></i> &ensp; Delete selected item(s)</button>
+			</div>
+			<!-- input terms section -->
+			<div class="col-8">
+				<p></p>
+				<input type="text" id="list-add-input" class="text-input" placeholder="Add search term(s) to filter" aria-label="Add search term(s) to filter">
+			</div>
+			<div class="col-4">
+				<button id="list-add-button"><i class="fas fa-plus"></i> Add</button>
+			</div>
+			<div class="col-12">
+				<p></p>
+				<p>You can add multiple terms, just split them up with commas (,).</p>
+			</div>
+			<!-- end input terms section -->
+		</div>
+	</div>
 </body>
