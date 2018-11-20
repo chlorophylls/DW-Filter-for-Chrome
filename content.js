@@ -1,7 +1,7 @@
 // content.js; Runs in the foreground of the HTML page.
 
 // List to edit/test.
-var list = ["mcu", "dceu", "fate/", "dragon age", "dc", "persona", "star wars"];
+var list = ["mcu", "dceu", "fate/", "dragon age", "dc", "persona", "star wars", "hypnosis mic"];
 
 //document.addEventListener("DOMContentLoaded", evt => {
 // When document is ready, create overlay div.
@@ -98,7 +98,8 @@ function filter() {
 			if (titleDIV) {
 				var title = titleDIV.innerHTML; // If the title exists, time to check it against the whitelist.
 				if (checkList(title)) { // If comment contains a whitelisted phrase in header, leave it visible.
-					allowed = true; // And sets boolean of whitelistedToplevel to true, so the comment-threads immediately following afterwards are left alone until it runs into another toplevel.
+					// And sets whitelistedToplevel to true, so the comment-threads immediately following afterwards are left alone until it runs into another toplevel.
+					allowed = true; 
 					
 				} else { // If it's not in the list, then it and its following comments are not allowed.
 					allowed = false;
@@ -108,16 +109,12 @@ function filter() {
 				console.log("Subject header text of " + toplevel.id + ": (no subject)");
 			}
 		}
-
-		if (allowed == false) { // These are the following comment threads that immediately follow toplevels. These should have comment-depth-2 or greater.
+		
+		// After checking the allowed flag, if it's not allowed, sets the comment-thread to be invisible.
+		if (allowed == false) { 
 			commentThreads[i].style.display = "none"; // If these aren't allowed/whitelisted or part of a whitelisted toplevel thread, hide it.
 		}
-		console.log(allowed);
-		//else {
-		// Else, it's not a toplevel. If comment-depth is more than 1 (aka not a toplevel) immediately following after the toplevel div, 
-		// then it is a response to a thread that does not contain whitelisted terms in the header.
-		//commentThreads[i].style.display = "none"; // So hide it.
-		//}
+		console.log(allowed); 	// Debugging
 	}
 }
 
