@@ -1,7 +1,7 @@
 {
-	"name": "DW Filter/Whitelist",
+	"name": "Dreamwidth Filter",
 	"version": "0.1",
-	"description": "Build an Extension!",
+	"description": "Filters Dreamwidth entry pages such that the top-level comments shown are the ones the user is actively searching for in the subject headers.",
 	"manifest_version": 2,
 	"browser_action": {
 		"default_popup": "popup.html"

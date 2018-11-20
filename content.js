@@ -1,7 +1,7 @@
 // content.js; Runs in the foreground of the HTML page.
 
 // List to edit/test.
-var list = ["mcu", "dceu", "ota"];
+var list = ["mcu", "dceu", "fate/", "dragon age", "dc", "persona", "star wars"];
 
 //document.addEventListener("DOMContentLoaded", evt => {
 // When document is ready, create overlay div.
@@ -9,10 +9,9 @@ createOverlay();
 
 updateOverlay(list); // Updates the overlay with the current list of terms.
 
-filter(); // Filters the 
-//});
+filter(); // Filters the page.
 
-// Sets the CSS styling properties of the overlay div.
+// Sets the CSS styling properties of the overlay div and appends it to the document's body.
 function createOverlay() {
 	// Creates the necessary overlay divs, which consist of 3 things: the wrapper, the overlay div (the content), and the title div.
 	var overlay = document.createElement("div");
@@ -55,6 +54,7 @@ function createOverlay() {
 
 // Accepts an array/list of terms and updates the overlay such that those show up, styling and all.
 function updateOverlay(list) {
+	console.log("Updating overlay div"); // Debugging
 
 	for (i = 0; i < list.length; i++) {
 		var term = document.createElement("div");
@@ -75,37 +75,72 @@ function updateOverlay(list) {
 	}
 }
 
-// Goes through all the Dreamwidth comment threads (which typically have the class "comment-depth-1").
+// Goes through all the Dreamwidth comment threads (which typically have the class "comment-thread").
 function filter() {
-	var commentThreads = document.getElementsByClassName("comment-depth-1"); // list of HTML elements that are DW comment threads.
+	console.log("Filtering..."); // Debugging
 
-	// For each comment thread, go to the topmost one (which should be the original comment anyway).
+	var commentThreads = document.getElementsByClassName("comment-thread"); // List of HTML elements that are DW comment threads.
+
+	var allowed = false; // Variable that holds the check state of the overall processing of the comment-threads.
+
+	// For each comment-thread...
 	for (i = 0; i < commentThreads.length; i++) {
-		var toplevel = commentThreads[i].querySelector('.comment'); // gets the toplevel comment itself
-		var commentTitle = toplevel.querySelector('.comment-title > span').innerHTML; // searches for the comment title/header and gets the inner HTML (inside of the span tags that are in headers).
-		//checkList(commentTitle);
-		
-		if (checkList(commentTitle)){ // comment contains a whitelisted phrase in header
-			// do nothing
-		} else { // it does not contain a whitelisted phrase in header
-			commentThreads[i].style.display = "none"; // so make it invisible
+
+		// Checks if it's a toplevel. It's a toplevel if it contains the class 'comment-depth-1'.
+		if (commentThreads[i].classList.contains("comment-depth-1")) {
+
+			var toplevel = commentThreads[i].querySelector('.comment'); // Gets the toplevel comment element itself.
+
+			// Searches for the comment title/header element and gets the inner HTML (inside of the span tags that are in headers).
+			var titleDIV = toplevel.querySelector('.comment-title > span');
+
+			// Checks to make sure that the title DIV even has HTML in it to pull the title from. If there's (no subject), then it's null.
+			if (titleDIV) {
+				var title = titleDIV.innerHTML; // If the title exists, time to check it against the whitelist.
+				if (checkList(title)) { // If comment contains a whitelisted phrase in header, leave it visible.
+					allowed = true; // And sets boolean of whitelistedToplevel to true, so the comment-threads immediately following afterwards are left alone until it runs into another toplevel.
+					
+				} else { // If it's not in the list, then it and its following comments are not allowed.
+					allowed = false;
+				}
+			} else { // If there's nothing in the header of the comment, it's not allowed.
+				allowed = false;
+				console.log("Subject header text of " + toplevel.id + ": (no subject)");
+			}
 		}
-		
+
+		if (allowed == false) { // These are the following comment threads that immediately follow toplevels. These should have comment-depth-2 or greater.
+			commentThreads[i].style.display = "none"; // If these aren't allowed/whitelisted or part of a whitelisted toplevel thread, hide it.
+		}
+		console.log(allowed);
+		//else {
+		// Else, it's not a toplevel. If comment-depth is more than 1 (aka not a toplevel) immediately following after the toplevel div, 
+		// then it is a response to a thread that does not contain whitelisted terms in the header.
+		//commentThreads[i].style.display = "none"; // So hide it.
+		//}
 	}
 }
 
-// Checks if the input text contains any phrase in the list. Returns true if it does.
+// Checks if the input text (usually the comment title/subject header) contains any phrase in the list. Returns true if it does.
 function checkList(text) {
-	length = list.length;
 
-	var regexList = new RegExp(list.join("|"), "i"); // case insensitive matching
+	var length = list.length; // Length of whitelist
 
-	while (length--) { // loops through entire list of whitelisted terms and check if the input text ("text") matches any of them.
+	// Should account for wildcards, too. 
+	// "fate/*" should catch "fate/ series", "fate/extra", "fate/grand order", etc. 
+	// "tales of *" should catch "Tales of Berseria", "Tales of the Abyss", "tales of vesperia", etc.
+
+	// should also handle /'s in canon names, e.g. Fate/, .hack// G.U., etc.
+
+	var regexList = new RegExp(list.join("|"), "i"); // regular expression that joins a whole list, and includes case insensitive matching
+
+	while (length--) { // Loops through entire list of whitelisted terms and check if the input text ('text') matches any of them.
 		if (regexList.test(text)) {
-			console.log(text); // returns the input text if it does contain a whitelisted term.
+			console.log(text + " contains whitelisted term"); // Prints to console the input text if it does contain a whitelisted term.
 			return true;
 		} else {
-			return false;
+			console.log("No whitelisted terms found in subject header: " + text); // Debugging
+			return false; // Prints to console that it doesn't contain a whitelisted term.
 		}
 	}
 }
