@@ -16,16 +16,14 @@
       <input type="text" id="results-per-page" class="form-control" placeholder="20" value="20" aria-label="Filtered results per page">
     </div>
   </div> -->
-		<div class="row">
+		<div class="row" >
 			<div class="col">
-				<label class="switch">
-					<input type="checkbox" id="extension-toggle" checked>
+				<center><label class="switch">
+					<input type="checkbox" id="extension-toggle" class="dw-filter-off" onClick="switchState(this)">
 					<span class="slider"></span>
-				</label>
+				</label></center>
 			</div>
 		</div>
-
-		<p></p>
 		<!-- CURRENTLY FILTERED TO title div -->
 		<div class="row" id="filter-list-title">
 			<div class="col">
