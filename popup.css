@@ -142,8 +142,8 @@ button {
 	right: 0;
 	bottom: 0;
 	background-color: #ff5252;
-	-webkit-transition: .4s;
-	transition: .4s;
+	-webkit-transition: .3s;
+	transition: .3s;
 }
 .slider:before {
 	position: absolute;
@@ -153,8 +153,8 @@ button {
 	left: 0.5em;
 	bottom: 0.5em;
 	background-color: white;
-	-webkit-transition: .4s;
-	transition: .4s;
+	-webkit-transition: .3s;
+	transition: .3s;
 }
 input:checked + .slider {
 	background-color: #78C2AD;
