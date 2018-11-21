@@ -1,15 +1,18 @@
 // content.js; Runs in the foreground of the HTML page.
 
 // List to edit/test.
-var list = ["mcu", "dceu", "fate/", "dragon age", "dc", "persona", "star wars", "hypnosis mic"];
+var list = [];
 
-//document.addEventListener("DOMContentLoaded", evt => {
-// When document is ready, create overlay div.
-createOverlay();
+chrome.storage.sync.get("filterList", function (result) {
+	list = result["filterList"];
+	console.log("List has been loaded into overlay div: " + list);
+	
+	createOverlay();		// Create overlay div.
 
-updateOverlay(list); // Updates the overlay with the current list of terms.
+	updateOverlay(list); 	// Updates the overlay with the current list of terms.
 
-filter(); // Filters the page.
+	filter(); // Filters the page.
+});
 
 // Sets the CSS styling properties of the overlay div and appends it to the document's body.
 function createOverlay() {
@@ -114,8 +117,9 @@ function filter() {
 		if (allowed == false) {
 			commentThreads[i].style.display = "none"; // If these aren't allowed/whitelisted or part of a whitelisted toplevel thread, hide it.
 		}
-		console.log(allowed); // Debugging
+		console.log("Allowed = " + allowed); // Debugging
 	}
+	console.log("Filtering done!"); // Debugging
 }
 
 // Checks if the input text (usually the comment title/subject header) contains any phrase in the list. Returns true if it does.

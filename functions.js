@@ -60,7 +60,7 @@ function updateList(input) {
 			insertDIV.innerHTML = '<div class="col-8 list-text">' + list[i] + '</div><div class="col-4 list-actions"><input type="checkbox" class="list-check"><button class="list-delete-button" onClick="deleteTerm(this)"><i class="fas fa-trash-alt"></i></button></div>';
 			currentListDIV.appendChild(insertDIV);
 		}
-		console.log("Updated the filter list!");
+		console.log("Updated the filter list divs!");
 	});
 }
 
