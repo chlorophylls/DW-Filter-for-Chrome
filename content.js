@@ -117,7 +117,7 @@ function filter() {
 		if (allowed == false) {
 			commentThreads[i].style.display = "none"; // If these aren't allowed/whitelisted or part of a whitelisted toplevel thread, hide it.
 		}
-		console.log("Allowed = " + allowed); // Debugging
+		//console.log("Allowed = " + allowed); // Debugging
 	}
 	console.log("Filtering done!"); // Debugging
 }

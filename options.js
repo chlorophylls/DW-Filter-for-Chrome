@@ -1,15 +1,12 @@
 // Document ready function. 
-document.addEventListener("DOMContentLoaded", evt => {
+document.addEventListener("DOMContentLoaded", evt => {	
 	/** options.html ONLY FUNCTIONS **/
 
 	// Binds the deleteAll function to any button with the id 'delete-all-button'.
 	document.getElementById("delete-all-button").onclick = deleteAll;
 
 	// Binds the importFromFile function to any button with the id 'import-button'.
-	document.getElementById("import-button").onclick = importFromFile;
-
-	// Binds the exportPlaintext function to any button with the id 'export-button'.
-	document.getElementById("export-button").onclick = exportPlaintext();
+	// document.getElementById("import-button").onclick = importFromFile;
 
 	// Binds the exportPlaintext function to any button with the id 'export-button'.
 	document.getElementById("export-plain-copy-button").onclick = copyToClipboard;
@@ -28,6 +25,8 @@ document.addEventListener("DOMContentLoaded", evt => {
 	// When the user clicks on the button, open the modal 
 	btn.onclick = function () {
 		modal.style.display = "block";
+		// And run exportPlaintext.
+		exportPlaintext();
 	};
 
 	// When the user clicks on <span> (x), close the modal
@@ -49,15 +48,13 @@ function deleteAll() {
 	if (confirm('Are you sure you want to delete all of your saved filter terms?')) {
 		chrome.storage.sync.get("filterList", function (result) {
 			var list = result["filterList"];
-
-			chrome.storage.sync.set({
-				filterList: list
-			}, function () {
-				list.length = 0; // Clears the entire list.
-				updateList(list); // Updates the list divs.
+			list.length = 0;
+			
+			chrome.storage.sync.set({filterList: list}, function () {
 				console.log("Filter list has been entirely cleared.");
 			});
-
+			updateList(); // Updates the list divs.
+			console.log(list);
 		});
 
 	} else {
@@ -74,7 +71,10 @@ function importFromFile() {
 // This function will fill in the textarea.
 function exportPlaintext() {
 	var textarea = document.getElementById("export-plain-textarea");
-	//textarea.value = list.toString();
+	
+	chrome.storage.sync.get("filterList", function (result) {
+		textarea.value = result["filterList"].toString();
+	});
 }
 
 // Functions that allows the user to copy the whole list to clipboard by clicking the export-plain-textarea button in options.html.
