@@ -1,0 +1,34 @@
+#filter-overlay-title {
+	color: #ffffff;
+	background-color: #78C2AD;
+	padding: 0.4em;
+	font-size: 1em;
+}
+
+#filter-overlay-wrapper {
+	top: 10px;
+	left: 50%;
+	position: fixed;
+	z-index: 999;
+	min-width: 70%;
+}
+
+#filter-overlay-content {
+	position: relative;
+	left: -50%;
+	text-align: center;
+	border-radius: 1em;
+	/*min-height: 12em;*/
+	background-color: rgba(211, 211, 211, 0.5); /* This is just the same gray (#D3D3D3) that's used in popup, just with transparency. */
+}
+
+.overlay-term {
+	background-color: #78C2AD;
+	font-size: 0.75em;
+	padding: 0.5em;
+	margin: 0.5em;
+	color: #ffffff;
+	display: inline-block;
+	border-radius: 0.5em;
+	/*border: 1px solid #3c8671;*/
+}
