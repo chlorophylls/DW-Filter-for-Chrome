@@ -13,8 +13,8 @@
 	],
 	"content_scripts": [{
 		"matches": [
-			//"*://*.dreamwidth.org/*"
-			"<all_urls>"
+			"*://*.dreamwidth.org/*"
+			//"<all_urls>"
 		],
 		"css": ["content.css"],
 		"js": ["content.js"]
