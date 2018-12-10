@@ -8,7 +8,8 @@
 	},
 	"options_page": "options.html",
 	"permissions": [
-		"storage"
+		"storage",
+		"tabs"
 	],
 	"content_scripts": [{
 		"matches": [

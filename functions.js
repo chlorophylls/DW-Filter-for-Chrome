@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", evt => {
 	
 	// Loads the list.
 	chrome.storage.sync.get("filterList", function (result) {
-		if (result['filterList'] == null){ 		// If there's nothing in the onset, define the list array so it doesn't spit out an undefined error.
+		// If there's nothing in the onset, define the list array so it doesn't spit out an undefined error.
+		if (result['filterList'] == null){ 		
 			chrome.storage.sync.set({filterList: []}, function () {
 				console.log("Defined the list.");
 			});
@@ -172,9 +173,14 @@ function switchState() {
 			chrome.storage.sync.set({extensionState: "dw-filter-off"}, function () {
 				console.log("Extension setting has been saved. Extension status: OFF.");
 			});
+			
+			// Reloads the current active tab.
+			chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        		chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+			});
 
 			chrome.storage.sync.get("extensionState", function (result) {
-				console.log("Switch value is " + result["extensionState"]);
+				console.log("Switch value is now " + result["extensionState"]);
 			});
 
 		} else { // Else, it's already off, so turn on.
@@ -184,9 +190,13 @@ function switchState() {
 			chrome.storage.sync.set({extensionState: "dw-filter-on"}, function () {
 				console.log("Extension setting has been saved. Extension status: ON.");
 			});
+			// Reloads the current active tab.
+			chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        		chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+    		});
 
 			chrome.storage.sync.get("extensionState", function (result) {
-				console.log("Switch value is " + result["extensionState"]);
+				console.log("Switch value is now " + result["extensionState"]);
 			});
 		}
 	});
