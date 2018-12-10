@@ -10,10 +10,16 @@ document.addEventListener("DOMContentLoaded", evt => {
 			document.getElementById("list-add-button").click();
 		}
 	});
-
+	
 	// Loads the list.
 	chrome.storage.sync.get("filterList", function (result) {
-		updateList(result["filterList"]);
+		if (result['filterList'] == null){ 		// If there's nothing in the onset, define the list array so it doesn't spit out an undefined error.
+			chrome.storage.sync.set({filterList: []}, function () {
+				console.log("Defined the list.");
+			});
+		}
+		
+		updateList();
 	});
 
 	document.getElementById("list-add-button").onclick = addTerms;
@@ -25,6 +31,7 @@ document.addEventListener("DOMContentLoaded", evt => {
 	if (document.getElementById("extension-toggle")) {
 		checkSwitch();
 	}
+	
 });
 
 // Populates filter-list divs based on an array/list.
@@ -36,7 +43,7 @@ function updateList() {
 
 	chrome.storage.sync.get("filterList", function (result) {
 		var list = result["filterList"];
-
+		
 		// Goes through the list and repopulates it with the updated data.
 		// For each item in the list array, create a div and append it to the filter-list div.
 		for (i = 0; i < list.length; i++) {
@@ -68,8 +75,8 @@ function addTerms() {
 	// Separates the input string (input) by the separator character (which should be a comma), and trims it so that the leading and ending whitespace for each term are gone.
 	var inputList = input.trim().split(/\s*,\s*/);
 
-	chrome.storage.sync.get("filterList", function (result) {
-		var list = result["filterList"];
+	chrome.storage.sync.get('filterList', function (result) {
+		var list = result['filterList'];
 		var debuggingList = [];		// Debugging
 		
 		for (i = 0; i < inputList.length; i++) {
@@ -156,34 +163,30 @@ function switchState() {
 
 	chrome.storage.sync.get("extensionState", function (result) {
 		button.className = result["extensionState"];
-		console.log("Value is " + result["extensionState"]);
+		console.log("Switch value is " + result["extensionState"]);
 
 		if (button.className == "dw-filter-on") { // If already on, turn off.
 			button.className = "dw-filter-off";
 			button.checked = false;
 
-			chrome.storage.sync.set({
-				extensionState: "dw-filter-off"
-			}, function () {
+			chrome.storage.sync.set({extensionState: "dw-filter-off"}, function () {
 				console.log("Extension setting has been saved. Extension status: OFF.");
 			});
 
 			chrome.storage.sync.get("extensionState", function (result) {
-				console.log("Value is " + result["extensionState"]);
+				console.log("Switch value is " + result["extensionState"]);
 			});
 
 		} else { // Else, it's already off, so turn on.
 			button.className = "dw-filter-on";
 			button.checked = true;
 
-			chrome.storage.sync.set({
-				extensionState: "dw-filter-on"
-			}, function () {
+			chrome.storage.sync.set({extensionState: "dw-filter-on"}, function () {
 				console.log("Extension setting has been saved. Extension status: ON.");
 			});
 
 			chrome.storage.sync.get("extensionState", function (result) {
-				console.log("Value is " + result["extensionState"]);
+				console.log("Switch value is " + result["extensionState"]);
 			});
 		}
 	});
