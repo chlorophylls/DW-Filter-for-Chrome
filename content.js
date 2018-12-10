@@ -5,9 +5,7 @@ var list = [];
 
 // Check if the extension state is on or off.
 chrome.storage.sync.get("extensionState", function (result) {
-	if (result["extensionState"] == "dw-filter-off") { // If it's off, do nothing.
-		// hideOverlay();
-	} else { // Else, it's on, so go ahead and filter.
+	if (result["extensionState"] == "dw-filter-on") { // If it's on, run the necessary functions..
 		chrome.storage.sync.get("filterList", function (result) {
 			list = result["filterList"];
 			console.log("List has been loaded into overlay div: " + list);
@@ -18,6 +16,8 @@ chrome.storage.sync.get("extensionState", function (result) {
 
 			filter(); // Filters the page.
 		});
+	} else { // Else, it's off, so do nothing.
+		// hideOverlay();
 	}
 });
 
