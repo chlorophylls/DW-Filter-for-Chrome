@@ -3,15 +3,22 @@
 // List to edit/test.
 var list = [];
 
-chrome.storage.sync.get("filterList", function (result) {
-	list = result["filterList"];
-	console.log("List has been loaded into overlay div: " + list);
-	
-	createOverlay();		// Create overlay div.
+// Check if the extension state is on or off.
+chrome.storage.sync.get("extensionState", function (result) {
+	if (result["extensionState"] == "dw-filter-off") { // If it's off, do nothing.
+		// hideOverlay();
+	} else { // Else, it's on, so go ahead and filter.
+		chrome.storage.sync.get("filterList", function (result) {
+			list = result["filterList"];
+			console.log("List has been loaded into overlay div: " + list);
 
-	updateOverlay(list); 	// Updates the overlay with the current list of terms.
+			createOverlay(); // Create overlay div.
 
-	filter(); // Filters the page.
+			updateOverlay(list); // Updates the overlay with the current list of terms.
+
+			filter(); // Filters the page.
+		});
+	}
 });
 
 // Sets the CSS styling properties of the overlay div and appends it to the document's body.
@@ -26,7 +33,7 @@ function createOverlay() {
 	overlay.id = "filter-overlay-content";
 
 	overlayTitleDiv.innerText = "CURRENTLY FILTERING TO:"; // Inner text for the title div.
-	
+
 	overlay.appendChild(overlayTitleDiv); // Attaches the title div to the actual overlay div.
 	overlayWrapper.appendChild(overlay); // Attaches the actual overlay div (the content) to the wrapper.
 
@@ -47,6 +54,11 @@ function updateOverlay(list) {
 
 		document.getElementById("filter-overlay-content").appendChild(term); // Appends the term to the content div.
 	}
+}
+
+// Hides the CSS list overlay (once it's been created).
+function hideOverlay() {
+	document.getElementById("filter-overlay-wrapper").style.display = "none";
 }
 
 // Goes through all the Dreamwidth comments (which typically have the class "comment-thread").
