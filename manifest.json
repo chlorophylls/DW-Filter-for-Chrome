@@ -1,6 +1,6 @@
 {
 	"name": "Dreamwidth Filter",
-	"version": "0.5",
+	"version": "0.6",
 	"description": "Filters Dreamwidth entry pages such that the top-level comments shown are the ones the user is actively searching for in the subject headers.",
 	"manifest_version": 2,
 	"browser_action": {
@@ -12,7 +12,8 @@
 	],
 	"content_scripts": [{
 		"matches": [
-			"*://*.dreamwidth.org/*"
+			//"*://*.dreamwidth.org/*"
+			"<all_urls>"
 		],
 		"css": ["content.css"],
 		"js": ["content.js"]
