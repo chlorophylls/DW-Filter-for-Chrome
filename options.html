@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 
 <head>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<script src="options.js"></script>
-<script src="functions.js"></script>	
-<link rel="stylesheet" type="text/css" href="popup.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="options.js"></script>
+	<script src="functions.js"></script>
+	<link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 
 <body>
-<div class="container-fluid">
-  <h3>ABOUT</h3>
-  <p>This extension filters DW pages such that the only comments that show up are the ones specifically whitelisted. Think of it as an advanced Ctrl + F.</p>
-  <p></p>
-  <div class="row">
-    <div class="col-6"> 
-      
-      <!-- CURRENTLY FILTERED TO title div -->
-      <div class="row" id="filter-list-title">
-        <div class="col">
-          <center>
-            CURRENTLY FILTERING TO
-          </center>
-        </div>
-      </div>
-      
-      <!-- FILTER LIST OF WORDS -->
-      <div class="row">
-        <div class="col" id="filter-list"> </div>
-      </div>
-    </div>
-    <!-- END FILTER LIST OF WORDS --> 
-    <!-- START ACTIONS SECTION -->
-    <div class="col-6"> 
-      <!-- number of results to filter to per page 
+	<div class="container-fluid">
+		<h3>ABOUT</h3>
+		<p>This extension filters DW pages such that the only comments that show up are the ones specifically whitelisted. Think of it as an advanced Ctrl + F.</p>
+		<p></p>
+		<div class="row">
+			<div class="col-6">
+
+				<!-- CURRENTLY FILTERED TO title div -->
+				<div class="row" id="filter-list-title">
+					<div class="col">
+						<center>
+							CURRENTLY FILTERING TO
+						</center>
+					</div>
+				</div>
+
+				<!-- FILTER LIST OF WORDS -->
+				<div class="row">
+					<div class="col" id="filter-list"> </div>
+				</div>
+			</div>
+			<!-- END FILTER LIST OF WORDS -->
+			<!-- START ACTIONS SECTION -->
+			<div class="col-6">
+				<!-- number of results to filter to per page 
       <div class="row">
         <div class="col-4"><b>Number of filtered results per page:</b></div>
         <div class="col-8">
@@ -42,70 +42,79 @@
       </div>
       <p></p>
       <!-- END number of results to filter to per page -->
-      
-      <div class="row" id="options-mass-actions">
-        <div class="col">
-          <button id="delete-selected-button"><i class="fas fa-minus-square"></i> &ensp; Delete selected item(s)</button>
-        </div>
-        <div class="col">
-          <button id="delete-all-button"><i class="fas fa-times"></i> &ensp; Clear entire search term list</button>
-        </div>
-        <!--<div class="col">
+
+				<div class="row" id="options-mass-actions">
+					<div class="col">
+						<button id="delete-selected-button"><i class="fas fa-minus-square"></i> &ensp; Delete selected item(s)</button>
+					</div>
+					<div class="col">
+						<button id="delete-all-button"><i class="fas fa-times"></i> &ensp; Clear entire search term list</button>
+					</div>
+					<!--<div class="col">
           <button id="import-button"><i class="fas fa-download"></i> &ensp; Import search term list</button>
           <input type="file" id="file-upload" hidden/>
         </div>-->
-        <div class="col">
-          <button id="export-button" onclick="exportPlaintext"><i class="fas fa-upload"></i> &ensp; Export search term list</button>
-          <!-- opens a modal --> 
-        </div>
-      </div>
-      <div class="row"> 
-        <!-- input terms section -->
-        <div class="col-9">
-          <p></p>
-          <input type="text" id="list-add-input" class="text-input" placeholder="Add search term(s) to filter" aria-label="Add search term(s) to filter">
-          <p></p>
-          <p>You can add multiple terms, just split them up with commas (,).</p>
-        </div>
-        <div class="col-3">
-          <button id="list-add-button"><i class="fas fa-plus"></i> Add</button>
-        </div>
-        <div class="col-12"> 
-          <!-- end input terms section --> 
-          <!-- start wildcard/terms guide section -->
-          <p><big><b>Wildcard input guide</b></big></p>
-          <p>By default, terms that are left as is will be searched for as is. </p>
-          <p><b>ota</b> will show results that only have <b>ota</b>, not words that start with <b>ota</b> such as <b>otaku</b> or contain <b>ota</b> such as <b>rotation</b>.</p>
-          <p>To include more, use the wildcard asterisk (*).</p>
-          <p>e.g. <b>fate/*</b> will include <b>fate/extra</b>, <b>fate/zero</b>, <b>fate/apocrypha</b>, <b>fate/ series</b>, etc.</p>
-          <p></p>
-        </div>
-        <!-- end wildcard/terms guide section --> 
-      </div>
-    </div>
-    <!-- END ACTIONS SECTION --> 
-  </div>
-  <p></p>
-  
-  <!-- The Modal -->
-  <div id="export-modal" class="modal"> 
-    <!-- Modal content -->
-    <div class="modal-content">
-      <div class="modal-header"><big><big>Export filter list</big></big> <span class="modal-close">&times;</span> </div>
-      <div class="modal-body row">
-        <div class="col-12">
-          <p></p>
-          <!--<p><b>Export as JSON file</b></p>-->
-          <p><b>Export as plain text (to copy and paste into the "Add search term(s)" field) </b></p>
-        </div>
-        <div class="col-9">
-          <textarea rows="6" id="export-plain-textarea" class="text-input"> </textarea>
-        </div>
-        <div class="col-3">
-          <button id="export-plain-copy-button"><i class="fas fa-clipboard-check"></i> &ensp; Copy to clipboard</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+					<div class="col">
+						<button id="export-button" onclick="exportPlaintext"><i class="fas fa-upload"></i> &ensp; Export search term list</button>
+						<!-- opens a modal -->
+					</div>
+				</div>
+				<div class="row">
+					<!-- input terms section -->
+					<div class="col-9">
+						<p></p>
+						<input type="text" id="list-add-input" class="text-input" placeholder="Add search term(s) to filter" aria-label="Add search term(s) to filter">
+						<p></p>
+						<p>You can add multiple terms, just split them up with commas (,).</p>
+					</div>
+					<div class="col-3">
+						<button id="list-add-button"><i class="fas fa-plus"></i> Add</button>
+					</div>
+					<!-- end input terms section -->
+					<!-- start wildcard/terms guide section -->
+					<div class="col-12">						
+						<p><big><b>Text filtering rules</b></big></p>
+						<p>By default, terms will be searched for inclusively. For example:</p>
+						<ul>
+							<li><b>fate</b> will include <b><i>fate</i>/ series</b> and stuff like <b>resonance of <i>fate</i></b>.</li>
+							<li><b>ota</b> will include phrases such as <b><i>ota</i>ku</b> or <b>r<i>ota</i>tion</b>.</li>
+							<li><b>persona</b> will include phrases such as <b>hassan of the hundred <i>persona</i>s</b>.</li>
+							<li><b>spider</b> will include phrases such as <b>into the spiderverse</b>, <b>spiderman</b>, <b>spider-man</b>, etc.</li>
+						</ul>
+						<p>To get the results you (probably) want, be more specific, and use wildcards (<b>.*</b>).</p>
+						<ul>
+							<li><b>fate/.*</b> will include <b>fate/extra</b>, <b>fate/zero</b>, <b>fate/apocrypha</b>, <b>fate/ series</b>, etc. but will not include <b>resonance of fate</b> (because it doesn't have the / anyway).</li>
+							<li><b>persona .*</b> will include <b>persona 2: innocent sin</b>, <b>persona 3</b>, <b>persona 3 portable</b>, <b>persona 4 arena</b>, etc. but will not include <b>hassan of the hundred personas</b>.</li>
+							<li><b>tales of .*</b> will include <b>tales of berseria</b>, <b>tales of vesperia</b>, <b>tales of the abyss</b>, etc. but not <b>the canterbury tales</b>.</li>
+						</ul>
+						<p></p>
+					</div>
+					<!-- end wildcard/terms guide section -->
+				</div>
+			</div>
+			<!-- END ACTIONS SECTION -->
+		</div>
+		<p></p>
+
+		<!-- The Modal -->
+		<div id="export-modal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header"><big><big>Export filter list</big></big> <span class="modal-close">&times;</span> </div>
+				<div class="modal-body row">
+					<div class="col-12">
+						<p></p>
+						<!--<p><b>Export as JSON file</b></p>-->
+						<p><b>Export as plain text (to copy and paste into the "Add search term(s)" field) </b></p>
+					</div>
+					<div class="col-9">
+						<textarea rows="6" id="export-plain-textarea" class="text-input"> </textarea>
+					</div>
+					<div class="col-3">
+						<button id="export-plain-copy-button"><i class="fas fa-clipboard-check"></i> &ensp; Copy to clipboard</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>

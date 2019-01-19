@@ -109,12 +109,9 @@ function filter() {
 function checkList(text) {
 
 	var length = list.length; // Length of whitelist
-
-	// Should account for wildcards, too. 
-	// "fate/*" should catch "fate/ series", "fate/extra", "fate/grand order", etc. 
-	// "tales of *" should catch "Tales of Berseria", "Tales of the Abyss", "tales of vesperia", etc.
-
-	// should also handle /'s in canon names, e.g. Fate/, .hack// G.U., etc.
+	
+	// Replaces any / in the input text with \/, to make it regex-understandable (since it's an escape character in regex).
+	text.replace('/', '\/');
 
 	var regexList = new RegExp(list.join("|"), "i"); // regular expression that joins a whole list, and includes case insensitive matching
 
