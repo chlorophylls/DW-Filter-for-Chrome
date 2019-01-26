@@ -1,7 +1,7 @@
 {
 	"name": "Dreamwidth Filter",
 	"version": "0.6",
-	"description": "Filters Dreamwidth entry pages such that the top-level comments shown are the ones the user is actively searching for in the subject headers.",
+	"description": "Filters Dreamwidth toplevel comments to only show those that contain the phrases the user searches for.",
 	"manifest_version": 2,
 	"browser_action": {
 		"default_popup": "popup.html"
